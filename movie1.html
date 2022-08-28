@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show more</title>
+</head>
+<body>
+    <a href="" class="btn">Show more</a>
+    <div class="container"></div>
+</body>
+<script >
+    let show = document.querySelector(".btn")
+let content = document.querySelector(".container")
+show.addEventListener("click",(e)=>{
+    e.preventDefault();
+    console.log("hai");
+   
+    fetch(` https://api.tvmaze.com/shepisodesows/id/`)
+.then(res=>res.json())
+.then(data=>{
+    for(let i=0; i<data.length; i++){
+        let html=` <div>
+    <h1>id:${show.value}</h1>
+    <button>Thumbnail:${data[i].itmes.Thumbnail}</button>
+    <img src="${data[i].itmes.image.medium}"/img>
+    <h3>langauge:${data[i].itmes.language}</h3>
+    <h3>number:${data[i].itmes.number}</h3>
+    <h3>season:${data[i].itmes.season}</h3>
+    <p>summary:${data[i].itmes.summary}</p>
+    <h4>name:${data[i].itmes.name}</h4>
+    <h4>status:${data[i].itmes.status}</h4>
+    <h4>ended:${data[i].itmes.ended}</h4>
+    <h4>genres:${data[i].itmes.genres}</h4>
+    <h4>char:${data[i].itmes.charcter}</h4>
+    </div>`
+   
+    }  content.innerHTML+=html
+    console.log(html);
+   
+})
+})
+</script>
+</html>
